@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/petersun1937/Custom_Frontend_Chatbot/static/css/main.a851acd7.css",
+    "main.js": "/petersun1937/Custom_Frontend_Chatbot/static/js/main.12297fd7.js",
+    "static/js/453.78b945df.chunk.js": "/petersun1937/Custom_Frontend_Chatbot/static/js/453.78b945df.chunk.js",
+    "index.html": "/petersun1937/Custom_Frontend_Chatbot/index.html",
+    "main.a851acd7.css.map": "/petersun1937/Custom_Frontend_Chatbot/static/css/main.a851acd7.css.map",
+    "main.12297fd7.js.map": "/petersun1937/Custom_Frontend_Chatbot/static/js/main.12297fd7.js.map",
+    "453.78b945df.chunk.js.map": "/petersun1937/Custom_Frontend_Chatbot/static/js/453.78b945df.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a851acd7.css",
+    "static/js/main.12297fd7.js"
+  ]
+}
