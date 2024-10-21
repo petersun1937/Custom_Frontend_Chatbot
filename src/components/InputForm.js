@@ -30,7 +30,7 @@ function InputForm({ addMessage }) {
       try {
         setUploading(true); // Set uploading state to true
         //const response = await fetch('https://cool-game-meerkat.ngrok-free.app/api/document/upload', {
-          const response = await fetch('https://cross-platform-chatbot-app-5211eb66d32b.herokuapp.com/upload', {
+          const response = await fetch('https://cross-platform-chatbot-app-5211eb66d32b.herokuapp.com/api/document/upload', {
           method: 'POST',
           body: formData,
         });
