@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { sendWebhook, generateUUID } from '../webhookService';
+import ChatWindow from './Chatwindow';
 
 // Generate a session ID if it doesn't exist in localStorage
 function getSessionID() {
@@ -12,7 +13,7 @@ function getSessionID() {
 }
 
 
-function InputForm({ addMessage }) {
+function InputForm({ addMessage, simulateTyping, handleBotResponse  }) {
   const [inputText, setInputText] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploading, setUploading] = useState(false); // State for uploading
@@ -29,8 +30,8 @@ function InputForm({ addMessage }) {
   
       try {
         setUploading(true); // Set uploading state to true
-        //const response = await fetch('https://cool-game-meerkat.ngrok-free.app/api/document/upload', {
-          const response = await fetch('https://cross-platform-chatbot-app-5211eb66d32b.herokuapp.com/api/document/upload', {
+        const response = await fetch('https://cool-game-meerkat.ngrok-free.app/api/document/upload', {
+          //const response = await fetch('https://cross-platform-chatbot-app-5211eb66d32b.herokuapp.com/api/document/upload', {
           method: 'POST',
           body: formData,
         });
@@ -54,14 +55,23 @@ function InputForm({ addMessage }) {
       // Handle text message sending
       addMessage({ sender: 'user', text: inputText });
       setInputText(''); // Clear the input text
-      try {
-        const response = await sendWebhook(sessionID, inputText);
+
+      await simulateTyping(); // Trigger typing animation
+
+      // Call the bot response handler
+      //await handleBotResponse(sessionID, inputText);
+
+      /*try {
+        //const response = await sendWebhook(sessionID, inputText);
         addMessage({ sender: 'bot', text: response.response });
+        
       } catch (error) {
         console.error('Error:', error);
         addMessage({ sender: 'bot', text: 'There was an error processing your request.' });
-      }
+      }*/
   
+      handleBotResponse(sessionID, inputText);
+
       setSelectedFile(null); // Clear selected file
       //setInputText(''); // Clear input text for new uploads
     }
@@ -92,10 +102,10 @@ function InputForm({ addMessage }) {
         type="text"
         value={inputText}
         onChange={(e) => setInputText(e.target.value)}
-        placeholder="Type a message or upload a document..."
+        placeholder="Type a message... (ask me about the uploaded documents!)"
         disabled={!!selectedFile || uploading} // Disable typing when a file is selected or uploading
       />
-      <button type="button" className="upload-button" onClick={handleFileClick} title="Document Upload">
+     {/* <button type="button" className="upload-button" onClick={handleFileClick} title="Document Upload">
         <i className="fas fa-file-upload"></i>
       </button>
       <input
@@ -109,7 +119,7 @@ function InputForm({ addMessage }) {
         <button type="button" className="clear-button" onClick={clearSelectedFile}>
           Clear
         </button>
-      )}
+      )}*/}
       <button type="submit">
         {uploading ? (
           <span>Uploading<span className="dots"></span></span> // Show "Uploading..." inside the button

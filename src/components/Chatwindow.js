@@ -3,7 +3,7 @@ import ChatMessage from './Chatmessage';
 import { motion, AnimatePresence } from 'framer-motion';
 
 
-function ChatWindow({ messages }) {
+function ChatWindow({ messages, isTyping  }) {
   const [isDarkMode, setIsDarkMode] = useState(true);  // Manage dark mode state
   const chatWindowRef = useRef(null); // Ref to the chat window
 
@@ -12,7 +12,7 @@ function ChatWindow({ messages }) {
     if (chatWindowRef.current) {
       chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
     }
-  }, [messages]); // Trigger this effect whenever the messages array changes
+  }, [messages, isTyping]); // Trigger this effect whenever the messages array changes
 
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);  // Toggle dark mode on button click
@@ -46,6 +46,25 @@ function ChatWindow({ messages }) {
             <ChatMessage message={msg.text} sender={msg.sender} />
           </motion.div>
         ))}
+        {isTyping && (
+          <div className="typing-indicator-container">
+          <motion.div
+            key="typing"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="typing-indicator"
+            /*initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ duration: 0.3 }}
+            className="typing-indicator"*/
+          >
+            <p>Bot is typing...</p>
+            </motion.div>
+            </div>
+        )}
       </AnimatePresence>
       </div>
       </div>

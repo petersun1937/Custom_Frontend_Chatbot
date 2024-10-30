@@ -1,8 +1,10 @@
 
 import React, { useState } from 'react';
 import './App.css';
+import DocumentUpload from './components/DocumentUpload';
 import ChatWindow from './components/Chatwindow';
-import InputForm from './components/InputForm';
+import InputForm from './components/Inputform';
+import Chatbot from './components/Chatbot';
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -16,9 +18,17 @@ function App() {
 
   return (
     <div className="app-container">
-      <h1>Custom Chatbot</h1>
-      <ChatWindow messages={messages} />
-      <InputForm addMessage={addMessage} />
+      <div className="chat-and-upload">
+      {/* Chat components */}
+      <div className="chat-section">
+        <h1>Support Chatbot</h1>
+        {/* <ChatWindow messages={messages} />
+        <InputForm addMessage={addMessage} /> */}
+        <Chatbot messages={messages} addMessage={addMessage} />
+      </div>
+    {/* Document upload section */}
+    <DocumentUpload /> 
+      </div>
     </div>
   );
 }
