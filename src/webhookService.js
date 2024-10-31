@@ -1,3 +1,4 @@
+import config from './config';
 // webhookService.js
 
 /*export async function sendWebhook(event, message) {
@@ -31,8 +32,7 @@ export async function sendWebhook(sessionID, message) {
   }
 
   try {
-      const response = await fetch('https://cool-game-meerkat.ngrok-free.app/api/message', {
-      //const response = await fetch('https://cross-platform-chatbot-app-5211eb66d32b.herokuapp.com/api/message', {
+      const response = await fetch(`${config.baseURL}/message`, {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',

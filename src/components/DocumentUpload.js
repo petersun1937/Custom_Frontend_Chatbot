@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import { generateUUID } from '../webhookService';
+import config from '../config';
 
 function DocumentUpload() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -10,7 +11,7 @@ function DocumentUpload() {
   const [uploadSuccess, setUploadSuccess] = useState(''); // Success message
   //const fileInputRef = useRef(); // Reference to the file input
 
-  const url = 'https://cool-game-meerkat.ngrok-free.app/api/document/list';
+  const url = `${config.baseURL}/document/list`;
 
  // Generate sessionID if it doesn't exist
  const getSessionID = () => {
@@ -30,7 +31,7 @@ function DocumentUpload() {
   // Function to fetch uploaded documents
   const fetchDocuments = async () => {
     //const sessionID = getSessionID(); // Ensure sessionID is sent
-    //const url = `https://cross-platform-chatbot-app-5211eb66d32b.herokuapp.com/api/document/list`;
+
     console.log('Fetching documents from:', url); // Log the URL
 
     try {
@@ -87,8 +88,7 @@ function DocumentUpload() {
 
     try {
       setUploading(true);
-      const response = await fetch('https://cool-game-meerkat.ngrok-free.app/api/document/upload', {
-        // const response = await fetch('https://cross-platform-chatbot-app-5211eb66d32b.herokuapp.com/api/document/upload', {
+        const response = await fetch('${config.baseURL}/api/document/upload', {
         method: 'POST',
         body: formData,
       });
@@ -113,7 +113,7 @@ function DocumentUpload() {
 
   return (
     <div className="document-upload">
-      <h3>Upload Documents Here</h3>
+      <h3>Upload Documents Here for Context</h3>
       <input type="file" onChange={handleFileChange} accept=".txt,.pdf,.docx" />
       <button onClick={handleUpload} disabled={uploading}>
         <i className="fas fa-file-upload"></i>

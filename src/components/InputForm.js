@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { sendWebhook, generateUUID } from '../webhookService';
-import ChatWindow from './Chatwindow';
+import config from '../config';
 
 // Generate a session ID if it doesn't exist in localStorage
 function getSessionID() {
@@ -30,8 +30,7 @@ function InputForm({ addMessage, simulateTyping, handleBotResponse  }) {
   
       try {
         setUploading(true); // Set uploading state to true
-        const response = await fetch('https://cool-game-meerkat.ngrok-free.app/api/document/upload', {
-          //const response = await fetch('https://cross-platform-chatbot-app-5211eb66d32b.herokuapp.com/api/document/upload', {
+        const response = await fetch(`${config.baseURL}/document/upload`, {
           method: 'POST',
           body: formData,
         });
