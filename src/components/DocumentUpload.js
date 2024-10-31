@@ -88,7 +88,7 @@ function DocumentUpload() {
 
     try {
       setUploading(true);
-        const response = await fetch('${config.baseURL}/api/document/upload', {
+        const response = await fetch(`${config.baseURL}/api/document/upload`, {
         method: 'POST',
         body: formData,
       });
