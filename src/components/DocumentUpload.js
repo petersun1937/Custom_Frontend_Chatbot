@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { generateUUID } from '../webhookService';
 import config from '../config';
 
@@ -9,7 +9,7 @@ function DocumentUpload() {
   const [fetchError, setFetchError] = useState(''); // Error for document fetching
   const [uploadError, setUploadError] = useState(''); // Error for uploading files
   const [uploadSuccess, setUploadSuccess] = useState(''); // Success message
-  //const fileInputRef = useRef(); // Reference to the file input
+  const fileInputRef = useRef(); // Reference to the file input
 
   const url = `${config.baseURL}/document/list`;
 
@@ -96,7 +96,7 @@ function DocumentUpload() {
       if (response.ok) {
         await fetchDocuments(); // Refresh the document list
         setSelectedFile(null); // Clear the selected file
-        //fileInputRef.current.value = ''; // Reset the file input
+        fileInputRef.current.value = ''; // Reset the file input
         setUploadSuccess('Document uploaded and processed successfully!'); // Show success message
         setUploadError(''); // Clear error message
       } else {
@@ -114,7 +114,7 @@ function DocumentUpload() {
   return (
     <div className="document-upload">
       <h3>Upload Documents Here for Context</h3>
-      <input type="file" onChange={handleFileChange} accept=".txt,.pdf,.docx" />
+      <input type="file" onChange={handleFileChange} accept=".txt,.pdf,.docx" ref={fileInputRef} />
       <button onClick={handleUpload} disabled={uploading}>
         <i className="fas fa-file-upload"></i>
         {uploading ? <span> Uploading<span className="dots"></span></span> : ' Upload'}
