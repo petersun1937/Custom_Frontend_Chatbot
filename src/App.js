@@ -5,35 +5,37 @@ import DocumentUpload from './components/DocumentUpload';
 import ChatWindow from './components/Chatwindow';
 import InputForm from './components/Inputform';
 import Chatbot from './components/Chatbot';
+import OutputLog from './components/OutputLogs';
 
 function App() {
   const [messages, setMessages] = useState([]);
+  const [outputLog, setOutputLog] = useState(null); // State for output log
 
   const addMessage = (message) => {
-    console.log('Current messages:', messages); // Debugging: shows existing messages
-    console.log('New message to add:', message); // Debugging: shows new message
-    //setMessages([...messages, message]); // Append the new message
-    setMessages((prevMessages) => [...prevMessages, message]); // Use a function inside setMessages to access the current state (the previous messages array)
+    setMessages((prevMessages) => [...prevMessages, message]);
   };
 
   return (
     <div className="app-container">
       <div className="chat-and-upload">
-      {/* Chat components */}
-      <div className="chat-section">
-        <h1>Support Chatbot</h1>
-        {/* <ChatWindow messages={messages} />
-        <InputForm addMessage={addMessage} /> */}
-        <Chatbot messages={messages} addMessage={addMessage} />
+        <div className="chat-section">
+          <h1>Support Chatbot</h1>
+          <Chatbot messages={messages} addMessage={addMessage} setOutputLog={setOutputLog} />
+        </div>
+        <DocumentUpload />
       </div>
-    {/* Document upload section */}
-    <DocumentUpload /> 
+
+
+      {/* Output Log Section */}
+      <div className="output-log-section">
+        <OutputLog outputLog={outputLog} />
       </div>
     </div>
   );
 }
 
 export default App;
+
 
 
 /*function App() {

@@ -9,11 +9,21 @@
 }*/
 
 /* App container: Centers the entire layout */
-.app-container {
+/* .app-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: #f5f5f5;
+  padding: 20px;
+} */
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
   background-color: #f5f5f5;
   padding: 20px;
 }
@@ -46,7 +56,16 @@ h1 {
 
 /* Chat section */
 .chat-section {
-  flex: 2; /* Chat section takes up more space */
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+}
+/* .chat-section {
+  flex: 2; 
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -55,7 +74,7 @@ h1 {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   max-width: 50%;
-}
+} */
 
 /* Chat window styling */
 .chat-window {
@@ -128,10 +147,16 @@ h1 {
 }
 
 /* Document upload section */
+/* .document-upload {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+} */
 .document-upload {
   flex: 1;
-  background-color: white; /* Match the dark mode color */
-  /*color: #e0e0e0;*/ /* Light text for readability */
+  background-color: white;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -506,6 +531,46 @@ body.dark-mode {
   transform: translateY(20px); /* Slide it back down when exiting */
   transition: opacity 500ms, transform 500ms;
 }
+
+/* Container for main content (chat + upload) */
+.main-content {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 20px; /* Add space below */
+}
+
+.output-log-section h3 {
+  text-align: center; /* Center align the heading */
+  margin-bottom: 10px; /* Add spacing below the heading */
+}
+
+
+/* Output Log: Positioned below */
+.output-log-section {
+  width: 50%;
+  max-width: 1200px;
+  background-color: #ffffff;
+  color: #333;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px; /* Adds separation */
+}
+
+/* Output Log in Dark Mode */
+.dark-mode .output-log-section {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  border: 1px solid #444;
+}
+
+
+
+
 
 
 
