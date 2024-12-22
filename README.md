@@ -3,61 +3,71 @@
 
 This repository contains the custom frontend for a multi-platform chatbot that provides user-friendly interaction and additional features to enhance the user experience.
 
+## Table of Contents
+- [Features](#features)
+- [Installation](#installation)
+- [Build for Production](#build-for-production)
+- [Deployment](#deployment)
+- [Usage](#usage)
+- [License](#license)
+- [Contact](#contact)
+
 ## Features
-
-1. **Chat UI**
-   - A user-friendly interface to interact with the chatbot, allowing users to send messages to and receive responses from the backend server.
-
-2. **Document Upload**
-   - Users can upload documents to provide additional context for the chatbot, improving the relevance of the responses.
-
-3. **Dark Mode/Light Mode**
-   - The app includes a toggle for switching between dark mode and light mode, allowing users to choose the theme that suits their preference.
+- **Chat UI**: A user-friendly interface to interact with the chatbot, allowing users to send messages and receive responses from the backend server.
+- **Document Upload**: Provides users with the ability to upload documents to enhance chatbot response relevance.
+- **Output Log**: The output log displays the detected intent and top-selected chunks with similarity scores for transparency and debugging purposes.
+- **Dark Mode/Light Mode**: Includes a toggle feature for switching between dark and light themes to suit user preferences.
 
 ## Installation
 
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/petersun1937/Custom_Frontend_Chatbot.git
-   cd chatbot-app-frontend
-   ```
+### Clone the Repository
+```bash
+git clone https://github.com/petersun1937/Custom_Frontend_Chatbot.git
+cd Custom_Frontend_Chatbot
+```
 
-2. **Install Dependencies**
-   - Make sure you have [Node.js](https://nodejs.org/) installed.
-   - Run the following command to install dependencies:
+### Install Dependencies
+1. **Ensure Node.js is installed**:
+   - Download and install [Node.js](https://nodejs.org/).
+2. **Install project dependencies**:
    ```bash
    npm install
    ```
 
-3. **Start the Development Server**
-   - Start the application by running:
-   ```bash
-   npm start
-   ```
-   - The app will run on `http://localhost:3000` by default.
+### Start the Development Server
+- Run the application locally:
+  ```bash
+  npm start
+  ```
+- Access the app at [http://localhost:3000](http://localhost:3000) by default.
 
 ## Build for Production
 
-To create a production-ready build of the app, run:
+To create a production-ready build of the application:
 ```bash
 npm run build
 ```
+- The build files will be located in the `build/` directory.
 
-This command will generate the build files in the `build` directory.
 
 ## Deployment
 
-The production-ready build can be deployed to any static hosting provider (e.g., GitHub Pages, Netlify, Vercel). Ensure the `build` folder is served by your hosting provider.
+The production-ready build can be deployed to any static hosting provider. This repo is deployed on **GitHub Pages**. [Check here](https://petersun1937.github.io/Custom_Frontend_Chatbot/).
+
+Ensure the `build/` folder is served by your chosen hosting provider.
 
 ## Usage
 
-- Open the application in your browser and start interacting with the chatbot.
-- Use the **document upload** feature to provide files that can add context to your conversation with the chatbot.
-- Switch between **dark mode** and **light mode** using the toggle button to customize the UI according to your preference.
-
-## Contributing
-
-Contributions are welcome! Please create an issue or submit a pull request if you would like to improve the project.
+1. **Upload Documents**: 
+   - Upload documents (PDF, DOC, or TXT) to provide additional context for chatbot interactions.
+2. **View Uploaded Documents**: 
+   - Check the uploaded document list in the app.
+3. **Interact with the Chatbot**:
+   - Start a conversation with the chatbot using the provided UI.
+   - Use the command `/openai` to disable Dialogflow intent matching and allow broader chunk searches.
+   - Use `/dialogflow` to re-enable intent matching.
+4. **Review Output Log**:
+   - Review the detected intent and top-selected chunks with similarity scores in the output log section.
 
 ## License
 
