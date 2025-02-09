@@ -27,7 +27,7 @@ export async function sendWebhook(sessionID, message) {
 
   // Check if a sessionID exists, if not, generate and store a new one
   if (!localStorage.getItem('sessionID')) {
-    const newSessionID = generateUUID(); // Assuming you have a UUID generator function
+    const newSessionID = generateUUID();
     localStorage.setItem('sessionID', newSessionID);
   }
 

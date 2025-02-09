@@ -13,7 +13,7 @@ function getSessionID() {
 }
 
 
-function InputForm({ addMessage, simulateTyping, handleBotResponse  }) {
+function InputForm({ addMessage, simulateTyping, handleBotResponse, setAIConfig  }) {
   const [inputText, setInputText] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploading, setUploading] = useState(false); // State for uploading
@@ -23,6 +23,7 @@ function InputForm({ addMessage, simulateTyping, handleBotResponse  }) {
     event.preventDefault();
     const sessionID = getSessionID();
   
+    // 1. Send the message first
     if (selectedFile) {
       const formData = new FormData();
       formData.append('document', selectedFile);
@@ -74,6 +75,28 @@ function InputForm({ addMessage, simulateTyping, handleBotResponse  }) {
       setSelectedFile(null); // Clear selected file
       //setInputText(''); // Clear input text for new uploads
     }
+
+    // 2. Fetch AI Config after sending the message
+    try {
+      const aiResponse = await fetch(`${config.baseURL}/ai-config`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "ngrok-skip-browser-warning": "69420", // If using ngrok
+        },
+      });
+  
+      if (!aiResponse.ok) {
+        throw new Error(`AI Config request failed: ${aiResponse.status}`);
+      }
+  
+      const aiData = await aiResponse.json();
+      console.log("Updated AI Config:", aiData);
+      setAIConfig(aiData); // Update AI config in App.js after message is sent
+  
+    } catch (error) {
+      console.error("Error fetching AI config:", error);
+    }
   };
 
   const handleFileClick = () => {
@@ -101,7 +124,7 @@ function InputForm({ addMessage, simulateTyping, handleBotResponse  }) {
         type="text"
         value={inputText}
         onChange={(e) => setInputText(e.target.value)}
-        placeholder="Type a message... (ask me about the uploaded documents!)"
+        placeholder="Type a message... (ask me about uploaded documents, or type /help for available commands!)"
         disabled={!!selectedFile || uploading} // Disable typing when a file is selected or uploading
       />
      {/* <button type="button" className="upload-button" onClick={handleFileClick} title="Document Upload">

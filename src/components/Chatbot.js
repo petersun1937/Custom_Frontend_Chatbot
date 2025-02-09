@@ -50,7 +50,7 @@ import OutputLog from './OutputLogs';
 // export default Chatbot;
 
 
-function Chatbot({ messages, addMessage, setOutputLog }) {
+function Chatbot({ messages, addMessage, setOutputLog, setAIConfig}) {
   //const [messages, setMessages] = useState([]);
   const [isTyping, setIsTyping] = useState(false); // Initialize typing state
 
@@ -110,7 +110,7 @@ function Chatbot({ messages, addMessage, setOutputLog }) {
   return (
     <div className="chatbot">
       <ChatWindow messages={messages} isTyping={isTyping}  />
-      <InputForm addMessage={addMessage} simulateTyping={simulateTyping} handleBotResponse={handleBotResponse}/>
+      <InputForm addMessage={addMessage} simulateTyping={simulateTyping} handleBotResponse={handleBotResponse} setAIConfig={setAIConfig} />
     </div>
   );
 }

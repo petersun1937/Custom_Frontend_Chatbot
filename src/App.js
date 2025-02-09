@@ -10,6 +10,7 @@ import OutputLog from './components/OutputLogs';
 function App() {
   const [messages, setMessages] = useState([]);
   const [outputLog, setOutputLog] = useState(null); // State for output log
+  const [aiConfig, setAIConfig] = useState(null);
 
   const addMessage = (message) => {
     setMessages((prevMessages) => [...prevMessages, message]);
@@ -20,15 +21,15 @@ function App() {
       <div className="chat-and-upload">
         <div className="chat-section">
           <h1>Support Chatbot</h1>
-          <Chatbot messages={messages} addMessage={addMessage} setOutputLog={setOutputLog} />
+          <Chatbot messages={messages} addMessage={addMessage} setOutputLog={setOutputLog} setAIConfig={setAIConfig} />
         </div>
         <DocumentUpload />
       </div>
 
 
-      {/* Output Log Section */}
+      {/* Output Log should show AI config */}
       <div className="output-log-section">
-        <OutputLog outputLog={outputLog} />
+        <OutputLog outputLog={outputLog} aiConfig={aiConfig} setAIConfig={setAIConfig} />
       </div>
     </div>
   );

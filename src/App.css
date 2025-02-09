@@ -561,6 +561,71 @@ body.dark-mode {
   margin-top: 20px; /* Adds separation */
 }
 
+/**/
+.output-log-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.output-log {
+  flex: 2;
+  background-color: #ffffff;
+  color: #333;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ai-status-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px; /* Reduce gap */
+  align-items: center;
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: 6px;
+  font-size: 12px; /* Smaller text */
+}
+
+.ai-provider-box,
+.dialogflow-status-box {
+  width: 150px; /* Reduce width */
+  padding: 5px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: bold;
+  color: #ffffff;
+  font-size: 12px; /* Reduce font size */
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ai-provider-box {
+  background-color: #0056b3; /* Darker blue */
+}
+
+.dialogflow-status-box {
+  background-color: #218838; /* Darker green */
+}
+
+
+/* Dark Mode */
+.dark-mode .output-log {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+
+.dark-mode .ai-provider-box {
+  background-color: #4444aa;
+}
+
+.dark-mode .dialogflow-status-box {
+  background-color: #227722;
+}
+
+
 /* Output Log in Dark Mode */
 .dark-mode .output-log-section {
   background-color: #1e1e1e;
